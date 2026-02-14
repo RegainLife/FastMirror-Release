@@ -145,7 +145,7 @@
               <td><strong>${r.version || '-'}</strong></td>
               <td>${r.published_at || '-'}</td>
               <td>${r.download_url ? `<a class="btn" href="${r.download_url}">FastMirror.exe</a>` : '-'}</td>
-              <td>${r.notes_url ? `<a href="${r.notes_url}" target="_blank" rel="noopener noreferrer">ノートを見る</a>` : '-'}</td>
+              <td>${r.notes_url ? `<a href="${r.notes_url}">ノートを見る</a>` : '-'}</td>
               <td><code title="${r.sha256 || ''}">${sha}${r.sha256 ? '...' : ''}</code></td>
             </tr>
           `;
