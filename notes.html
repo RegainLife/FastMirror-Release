@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FastMirror Release Notes</title>
+  <style>
+    :root {
+      --bg: #050b1d;
+      --card: #0b1530;
+      --fg: #dfe9ff;
+      --muted: #9db3d8;
+      --line: #1f3366;
+      --accent: #00d2ff;
+      --accent-hover: #00a6cf;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Yu Gothic UI", sans-serif;
+      background: radial-gradient(1200px 700px at 20% -10%, #12346b 0%, var(--bg) 58%);
+      color: var(--fg);
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 48px;
+    }
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 28px rgba(2, 9, 25, 0.55);
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.2px;
+    }
+    .sub {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .actions a {
+      text-decoration: none;
+      color: #041427;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .actions a:hover { background: var(--accent-hover); }
+    .card {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 28px rgba(2, 9, 25, 0.55);
+    }
+    #error {
+      display: none;
+      color: #ffd5d5;
+      background: #3b1522;
+      border: 1px solid #7f2a44;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+    #content {
+      line-height: 1.7;
+      font-size: 15px;
+      word-break: break-word;
+    }
+    #content h1, #content h2, #content h3 {
+      line-height: 1.35;
+      margin-top: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    #content h1 { font-size: 28px; }
+    #content h2 { font-size: 22px; }
+    #content h3 { font-size: 18px; }
+    #content p, #content ul, #content ol { margin: 0.6em 0; }
+    #content code {
+      font-family: Consolas, monospace;
+      background: #16264f;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+    #content pre {
+      overflow-x: auto;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    #content pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+    #content blockquote {
+      margin: 0.8em 0;
+      padding: 8px 12px;
+      border-left: 4px solid var(--line);
+      color: var(--muted);
+      background: #111f44;
+      border-radius: 6px;
+    }
+    .muted { color: var(--muted); font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1 id="title">Release Notes</h1>
+      <p class="sub">FastMirror の更新内容を表示します。</p>
+      <div class="actions">
+        <a href="./">リリース一覧へ戻る</a>
+        <a id="raw-link" href="#" target="_blank" rel="noopener noreferrer">生のMarkdownを開く</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <div id="error"></div>
+      <div id="content">
+        <p class="muted">読み込み中...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+  <script>
+    (async () => {
+      const FILE_RE = /^notes\/v[0-9A-Za-z._-]+\.md$/;
+      const params = new URLSearchParams(window.location.search);
+      const file = params.get('file') || '';
+
+      const titleEl = document.getElementById('title');
+      const rawLink = document.getElementById('raw-link');
+      const errorEl = document.getElementById('error');
+      const contentEl = document.getElementById('content');
+
+      function showError(message) {
+        errorEl.style.display = 'block';
+        errorEl.textContent = message;
+        contentEl.innerHTML = '<p class="muted">表示できる内容がありません。</p>';
+      }
+
+      if (!FILE_RE.test(file)) {
+        showError('不正なリリースノート指定です。');
+        rawLink.style.display = 'none';
+        return;
+      }
+
+      const version = (file.match(/v[0-9A-Za-z._-]+/) || [''])[0];
+      titleEl.textContent = version ? `Release Notes ${version}` : 'Release Notes';
+      rawLink.href = file;
+
+      try {
+        const resp = await fetch(file, { cache: 'no-store' });
+        if (!resp.ok) {
+          throw new Error(`HTTP ${resp.status}`);
+        }
+        const markdown = await resp.text();
+
+        marked.setOptions({
+          gfm: true,
+          breaks: true,
+          mangle: false,
+          headerIds: false
+        });
+        const html = marked.parse(markdown);
+        contentEl.innerHTML = DOMPurify.sanitize(html);
+      } catch (err) {
+        showError(`リリースノートの取得に失敗しました: ${String(err)}`);
+      }
+    })();
+  </script>
+</body>
+</html>
