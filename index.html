@@ -168,15 +168,6 @@
       return merged;
     }
 
-    function sumCountMap(map, versions) {
-      let total = 0;
-      for (const version of versions) {
-        const n = Number(map[version]);
-        if (Number.isFinite(n) && n >= 0) total += n;
-      }
-      return total;
-    }
-
     async function loadDownloadCounts() {
       const url = 'https://api.github.com/repos/RegainLife/FastMirror-Release/releases';
       const resp = await fetch(url, { cache: 'no-store' });
@@ -221,19 +212,16 @@
           saveCountCache(countMap);
         }
 
-        const versions = list.map(r => String(r.version || ''));
-        const total = sumCountMap(countMap, versions);
-        const hasAny = versions.some(v => Number.isFinite(Number(countMap[v])));
-        const totalText = hasAny ? total.toLocaleString() : '-';
-
         body.innerHTML = list.map(r => {
           const sha = String(r.sha256 || '').slice(0, 16);
+          const n = Number(countMap[r.version]);
+          const versionCount = Number.isFinite(n) && n >= 0 ? n.toLocaleString() : '-';
           return `
             <tr>
               <td><strong>${r.version || '-'}</strong></td>
               <td>${r.published_at || '-'}</td>
               <td>${r.download_url ? `<a class="btn" href="${r.download_url}">DL</a>` : '-'}</td>
-              <td>${totalText}</td>
+              <td>${versionCount}</td>
               <td>${r.notes_url ? `<a href="${r.notes_url}">ノートを見る</a>` : '-'}</td>
               <td><code title="${r.sha256 || ''}">${sha}${r.sha256 ? '...' : ''}</code></td>
             </tr>
