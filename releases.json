@@ -1,5 +1,13 @@
 [
   {
+    "version": "v0.2.2",
+    "published_at": "2026-02-23",
+    "notes_url": "https://regainlife.github.io/FastMirror-Release/notes.html?file=notes%2Fv0.2.2.md",
+    "notes_md_url": "https://regainlife.github.io/FastMirror-Release/notes/v0.2.2.md",
+    "download_url": "https://github.com/RegainLife/FastMirror-Release/releases/download/v0.2.2/FastMirror.exe",
+    "sha256": "05b0610c5d0e27158dd877af94d4832c434d5468b462daf1dc0090a327728917"
+  },
+  {
     "version": "v0.2.1",
     "published_at": "2026-02-15",
     "notes_url": "https://regainlife.github.io/FastMirror-Release/notes.html?file=notes%2Fv0.2.1.md",
@@ -30,13 +38,5 @@
     "notes_md_url": "https://regainlife.github.io/FastMirror-Release/notes/v0.1.4.md",
     "download_url": "https://github.com/RegainLife/FastMirror-Release/releases/download/v0.1.4/FastMirror.exe",
     "sha256": "596b1c4ea07b8dc15e1b20008b56be20f1508510a1ba99a9accdc89ca7ee4756"
-  },
-  {
-    "version": "v0.1.3",
-    "published_at": "2026-02-12",
-    "notes_url": "https://regainlife.github.io/FastMirror-Release/notes.html?file=notes%2Fv0.1.3.md",
-    "notes_md_url": "https://regainlife.github.io/FastMirror-Release/notes/v0.1.3.md",
-    "download_url": "https://github.com/RegainLife/FastMirror-Release/releases/download/v0.1.3/FastMirror.exe",
-    "sha256": "55a38cb72b4ae296b02b5673228a50b0544f03e3955b5abceb017d720b9ce41a"
   }
 ]
