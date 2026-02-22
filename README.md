@@ -1,5 +1,5 @@
 # FastMirror Release
 
-Latest EXE download:
+Distribution page (GitHub Pages):
 
-- https://github.com/RegainLife/FastMirror-Release/releases/latest/download/FastMirror.exe
+- https://regainlife.github.io/FastMirror-Release/
