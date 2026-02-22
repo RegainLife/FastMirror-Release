@@ -50,6 +50,12 @@
       border-radius: 14px;
       overflow: hidden;
     }
+    .summary {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      background: #0f1836;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -110,6 +116,7 @@
     </section>
 
     <section class="card">
+      <div id="dl-total" class="summary muted">DL Count Total: 読み込み中...</div>
       <table>
         <thead>
           <tr>
@@ -129,6 +136,54 @@
   </main>
 
   <script>
+    const DL_CACHE_KEY = 'fastmirror_dl_counts_v1';
+
+    function loadCountCache() {
+      try {
+        const raw = localStorage.getItem(DL_CACHE_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object') return {};
+        const result = {};
+        for (const [k, v] of Object.entries(parsed)) {
+          const n = Number(v);
+          if (k && Number.isFinite(n) && n >= 0) {
+            result[k] = n;
+          }
+        }
+        return result;
+      } catch (_) {
+        return {};
+      }
+    }
+
+    function saveCountCache(map) {
+      try {
+        localStorage.setItem(DL_CACHE_KEY, JSON.stringify(map));
+      } catch (_) {
+      }
+    }
+
+    function mergeCountMap(prev, next) {
+      const merged = { ...prev };
+      for (const [k, v] of Object.entries(next)) {
+        const n = Number(v);
+        if (!Number.isFinite(n) || n < 0) continue;
+        const old = Number(merged[k] || 0);
+        merged[k] = n > old ? n : old;
+      }
+      return merged;
+    }
+
+    function sumCountMap(map, versions) {
+      let total = 0;
+      for (const version of versions) {
+        const n = Number(map[version]);
+        if (Number.isFinite(n) && n >= 0) total += n;
+      }
+      return total;
+    }
+
     async function loadDownloadCounts() {
       const url = 'https://api.github.com/repos/RegainLife/FastMirror-Release/releases';
       const resp = await fetch(url, { cache: 'no-store' });
@@ -155,16 +210,34 @@
 
     async function loadReleases() {
       const body = document.getElementById('release-body');
+      const totalEl = document.getElementById('dl-total');
       try {
-        const [listResp, countMap] = await Promise.all([
+        const [listResp, liveCountMap] = await Promise.all([
           fetch('./releases.json', { cache: 'no-store' }),
-          loadDownloadCounts().catch(() => ({}))
+          loadDownloadCounts().catch(() => null)
         ]);
         if (!listResp.ok) throw new Error('HTTP ' + listResp.status);
         const list = await listResp.json();
         if (!Array.isArray(list) || list.length === 0) {
           body.innerHTML = '<tr><td colspan="6" class="muted">公開済みリリースがありません。</td></tr>';
+          if (totalEl) totalEl.textContent = 'DL Count Total: -';
           return;
+        }
+
+        const cachedMap = loadCountCache();
+        const countMap = liveCountMap ? mergeCountMap(cachedMap, liveCountMap) : cachedMap;
+        if (liveCountMap) {
+          saveCountCache(countMap);
+        }
+
+        const versions = list.map(r => String(r.version || ''));
+        const total = sumCountMap(countMap, versions);
+        if (totalEl) {
+          const source = liveCountMap ? 'live' : 'cache';
+          const hasAny = versions.some(v => Number.isFinite(Number(countMap[v])));
+          totalEl.textContent = hasAny
+            ? `DL Count Total: ${total.toLocaleString()} (${source})`
+            : 'DL Count Total: -';
         }
 
         body.innerHTML = list.map(r => {
@@ -183,6 +256,7 @@
         }).join('');
       } catch (err) {
         body.innerHTML = `<tr><td colspan="6" class="muted">releases.json の取得に失敗しました: ${String(err)}</td></tr>`;
+        if (totalEl) totalEl.textContent = 'DL Count Total: -';
       }
     }
 
