@@ -127,7 +127,6 @@
       <p class="sub">FastMirror の更新内容を表示します。</p>
       <div class="actions">
         <a href="./">リリース一覧へ戻る</a>
-        <a id="raw-link" href="#" target="_blank" rel="noopener noreferrer">生のMarkdownを開く</a>
       </div>
     </section>
 
@@ -148,7 +147,6 @@
       const file = params.get('file') || '';
 
       const titleEl = document.getElementById('title');
-      const rawLink = document.getElementById('raw-link');
       const errorEl = document.getElementById('error');
       const contentEl = document.getElementById('content');
 
@@ -160,13 +158,11 @@
 
       if (!FILE_RE.test(file)) {
         showError('不正なリリースノート指定です。');
-        rawLink.style.display = 'none';
         return;
       }
 
-      const version = (file.match(/v[0-9A-Za-z._-]+/) || [''])[0];
+      const version = (file.match(/^notes\/(v[0-9A-Za-z._-]+)\.md$/) || ['', ''])[1];
       titleEl.textContent = version ? `Release Notes ${version}` : 'Release Notes';
-      rawLink.href = file;
 
       try {
         const resp = await fetch(file, { cache: 'no-store' });
