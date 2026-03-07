@@ -1,0 +1,152 @@
+[
+    {
+        "version":  "v0.3.8",
+        "date":  "2026-03-07",
+        "file":  "notes/v0.3.8.md",
+        "summary":  "desktop.ini や Thumbs.db など、OS が自動生成するファイルを同期対象から除外するようにしました。"
+    },
+    {
+        "version":  "v0.3.7",
+        "date":  "2026-03-07",
+        "file":  "notes/v0.3.7.md",
+        "summary":  "通常ウィンドウモードで監視中にファイル変更が検知されないことがある問題を修正しました。"
+    },
+    {
+        "version":  "v0.3.6",
+        "date":  "2026-03-06",
+        "file":  "notes/v0.3.6.md",
+        "summary":  "トレイアイコンをクリックしても画面が表示されない不具合を修正しました。"
+    },
+    {
+        "version":  "v0.3.5",
+        "date":  "2026-03-04",
+        "file":  "notes/v0.3.5.md",
+        "summary":  "トレイ格納中に周期アップデートチェックが進まず、更新受信できない問題を修正しました。"
+    },
+    {
+        "version":  "v0.3.4",
+        "date":  "2026-03-04",
+        "file":  "notes/v0.3.4.md",
+        "summary":  "トレイ格納中に同期イベントを受信した際、同期アニメが表示されない不具合を修正しました。"
+    },
+    {
+        "version":  "v0.3.2",
+        "date":  "2026-03-02",
+        "file":  "notes/v0.3.2.md",
+        "summary":  "同期先リネーム競合でユーザー資産が失われ得る分岐を見直し、自動削除しない安全側の復旧に変更しました。"
+    },
+    {
+        "version":  "v0.3.1",
+        "date":  "2026-03-01",
+        "file":  "notes/v0.3.1.md",
+        "summary":  "同期中の速度表示を見直し、転送モード（高速/通常/混在）を上部で判別できるようにしました。"
+    },
+    {
+        "version":  "v0.3.0",
+        "date":  "2026-02-28",
+        "file":  "notes/v0.3.0.md",
+        "summary":  "複数同期ペア（有効/無効付き）を前提に、イベント解決・同期キュー投入・進捗集計をペア単位で処理する構成へ整理。"
+    },
+    {
+        "version":  "v0.2.9",
+        "date":  "2026-02-25",
+        "file":  "notes/v0.2.9.md",
+        "summary":  "fix tray idle CPU, animation recovery, and update check robustness; bump v0.2.9"
+    },
+    {
+        "version":  "v0.2.8",
+        "date":  "2026-02-25",
+        "file":  "notes/v0.2.8.md",
+        "summary":  "[Backup] [2026-02-25 00:15] - v0.2.8 更新チェック非同期化・診断ログ二重呼び出し修正・CompanyName削除"
+    },
+    {
+        "version":  "v0.2.7",
+        "date":  "2026-02-25",
+        "file":  "notes/v0.2.7.md",
+        "summary":  "[Backup] [2026-02-25 00:00] - v0.2.7 CompanyName削除"
+    },
+    {
+        "version":  "v0.2.6",
+        "date":  "2026-02-24",
+        "file":  "notes/v0.2.6.md",
+        "summary":  "fix tray watching sync and bump version to v0.2.6"
+    },
+    {
+        "version":  "v0.2.5",
+        "date":  "2026-02-23",
+        "file":  "notes/v0.2.5.md",
+        "summary":  "v0.2.5: 同期更新判定と作成日フィルタUI調整"
+    },
+    {
+        "version":  "v0.2.4",
+        "date":  "2026-02-23",
+        "file":  "notes/v0.2.4.md",
+        "summary":  "v0.2.4: 署名フロー追加と動作設定UI整列修正"
+    },
+    {
+        "version":  "v0.2.3",
+        "date":  "2026-02-23",
+        "file":  "notes/v0.2.3.md",
+        "summary":  "動作設定に「古いファイルを除外（直近N日）」を追加（更新日時基準、既定はOFF/30日）"
+    },
+    {
+        "version":  "v0.2.2",
+        "date":  "2026-02-23",
+        "file":  "notes/v0.2.2.md",
+        "summary":  "同期モードに「削除同期: 同期先も削除 / 同期先は保持」を追加"
+    },
+    {
+        "version":  "v0.2.1",
+        "date":  "2026-02-15",
+        "file":  "notes/v0.2.1.md",
+        "summary":  "perf: drive-aware theoretical calibration and UI ratio stabilization"
+    },
+    {
+        "version":  "v0.2.0",
+        "date":  "2026-02-15",
+        "file":  "notes/v0.2.0.md",
+        "summary":  "merge: v0.2.0 構造リファクタリングをmasterへ取り込み"
+    },
+    {
+        "version":  "v0.1.5",
+        "date":  "2026-02-15",
+        "file":  "notes/v0.1.5.md",
+        "summary":  "Maintenance release."
+    },
+    {
+        "version":  "v0.1.4",
+        "date":  "2026-02-13",
+        "file":  "notes/v0.1.4.md",
+        "summary":  "release: 0.1.4"
+    },
+    {
+        "version":  "v0.1.3",
+        "date":  "2026-02-12",
+        "file":  "notes/v0.1.3.md",
+        "summary":  "release: 0.1.3 バージョン更新とWindowsバージョン情報自動化"
+    },
+    {
+        "version":  "v0.1.2",
+        "date":  "2026-02-12",
+        "file":  "notes/v0.1.2.md",
+        "summary":  "release: 0.1.2 更新通知ウィンドウ調整"
+    },
+    {
+        "version":  "v0.1.1",
+        "date":  "2026-02-12",
+        "file":  "notes/v0.1.1.md",
+        "summary":  "chore: bump version to 0.1.1 for update test"
+    },
+    {
+        "version":  "v0.1.0",
+        "date":  "2026-02-12",
+        "file":  "notes/v0.1.0.md",
+        "summary":  "自動アップデート機能と配布導線を実装"
+    },
+    {
+        "version":  "v0.0.0",
+        "date":  "",
+        "file":  "notes/v0.0.0.md",
+        "summary":  "配布基盤を初期化"
+    }
+]
