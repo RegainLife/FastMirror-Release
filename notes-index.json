@@ -51,37 +51,37 @@
         "version":  "v0.2.9",
         "date":  "2026-02-25",
         "file":  "notes/v0.2.9.md",
-        "summary":  "fix tray idle CPU, animation recovery, and update check robustness; bump v0.2.9"
+        "summary":  "トレイ常駐中のCPU使用率が高くなる問題を修正しました。"
     },
     {
         "version":  "v0.2.8",
         "date":  "2026-02-25",
         "file":  "notes/v0.2.8.md",
-        "summary":  "[Backup] [2026-02-25 00:15] - v0.2.8 更新チェック非同期化・診断ログ二重呼び出し修正・CompanyName削除"
+        "summary":  "更新チェックの処理を非同期化し、応答性を改善しました。"
     },
     {
         "version":  "v0.2.7",
         "date":  "2026-02-25",
         "file":  "notes/v0.2.7.md",
-        "summary":  "[Backup] [2026-02-25 00:00] - v0.2.7 CompanyName削除"
+        "summary":  "トレイ常駐時の同期・アニメーション・自動アップデートの安定性を改善しました。"
     },
     {
         "version":  "v0.2.6",
         "date":  "2026-02-24",
         "file":  "notes/v0.2.6.md",
-        "summary":  "fix tray watching sync and bump version to v0.2.6"
+        "summary":  "トレイ常駐中の同期開始時にアニメーションが正しく表示されない問題を修正しました。"
     },
     {
         "version":  "v0.2.5",
         "date":  "2026-02-23",
         "file":  "notes/v0.2.5.md",
-        "summary":  "v0.2.5: 同期更新判定と作成日フィルタUI調整"
+        "summary":  "同期の更新判定と作成日フィルタの表示を調整しました。"
     },
     {
         "version":  "v0.2.4",
         "date":  "2026-02-23",
         "file":  "notes/v0.2.4.md",
-        "summary":  "v0.2.4: 署名フロー追加と動作設定UI整列修正"
+        "summary":  "動作設定画面のレイアウト崩れを修正しました。"
     },
     {
         "version":  "v0.2.3",
@@ -99,54 +99,54 @@
         "version":  "v0.2.1",
         "date":  "2026-02-15",
         "file":  "notes/v0.2.1.md",
-        "summary":  "perf: drive-aware theoretical calibration and UI ratio stabilization"
+        "summary":  "転送エンジンを大幅に最適化し、同期速度を改善しました。"
     },
     {
         "version":  "v0.2.0",
         "date":  "2026-02-15",
         "file":  "notes/v0.2.0.md",
-        "summary":  "merge: v0.2.0 構造リファクタリングをmasterへ取り込み"
+        "summary":  "アプリ内部の構造を大幅にリファクタリングし、保守性を向上させました。"
     },
     {
         "version":  "v0.1.5",
         "date":  "2026-02-15",
         "file":  "notes/v0.1.5.md",
-        "summary":  "Maintenance release."
+        "summary":  "安定性の向上とメンテナンスを行いました。"
     },
     {
         "version":  "v0.1.4",
         "date":  "2026-02-13",
         "file":  "notes/v0.1.4.md",
-        "summary":  "release: 0.1.4"
+        "summary":  "トレイ常駐中にアップデート通知をポップアップ表示する機能を追加しました。"
     },
     {
         "version":  "v0.1.3",
         "date":  "2026-02-12",
         "file":  "notes/v0.1.3.md",
-        "summary":  "release: 0.1.3 バージョン更新とWindowsバージョン情報自動化"
+        "summary":  "アプリのバージョン情報を自動で設定する仕組みを追加しました。"
     },
     {
         "version":  "v0.1.2",
         "date":  "2026-02-12",
         "file":  "notes/v0.1.2.md",
-        "summary":  "release: 0.1.2 更新通知ウィンドウ調整"
+        "summary":  "更新通知ウィンドウの表示を調整しました。"
     },
     {
         "version":  "v0.1.1",
         "date":  "2026-02-12",
         "file":  "notes/v0.1.1.md",
-        "summary":  "chore: bump version to 0.1.1 for update test"
+        "summary":  "自動アップデート機能の動作確認を行いました。"
     },
     {
         "version":  "v0.1.0",
         "date":  "2026-02-12",
         "file":  "notes/v0.1.0.md",
-        "summary":  "自動アップデート機能と配布導線を実装"
+        "summary":  "自動アップデート機能を実装しました。"
     },
     {
         "version":  "v0.0.0",
-        "date":  "",
+        "date":  "2026-02-09",
         "file":  "notes/v0.0.0.md",
-        "summary":  "配布基盤を初期化"
+        "summary":  "配布基盤を初期化しました。"
     }
 ]
